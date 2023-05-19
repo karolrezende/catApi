@@ -6,5 +6,14 @@ interface iMovie  {
     video: string,
     tag: string
 }
+interface iUser {
+    id:number,
+    token: string,
+    username:string,
+    email: string,
+    password: string
+}
 
-export {iMovie}
+type iUserRequest = Omit<iUser, "id" & 'token'>
+
+export {iMovie, iUser, iUserRequest}

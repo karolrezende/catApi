@@ -1,9 +1,10 @@
-create table if not exists users(
-	id serial primary key,
-	username varchar(50) not null,
-	email varchar(50) unique not null,
-	password varchar(50) not null
-)
+create table if not exists users (
+		id serial primary key,
+		token varchar(250) not null,
+		username varchar(50) not null,
+		email varchar(50) unique not null,
+		password varchar(50) not null
+); 
 
 create table if not exists movies(
 	id serial primary key,
