@@ -1,4 +1,4 @@
-interface iMovie  {
+export interface iMovie  {
     id: number,
     title: string,
     description: string,
@@ -6,14 +6,3 @@ interface iMovie  {
     video: string,
     tag: string
 }
-interface iUser {
-    id:number,
-    token: string,
-    username:string,
-    email: string,
-    password: string
-}
-
-type iUserRequest = Omit<iUser, "id" & 'token'>
-
-export {iMovie, iUser, iUserRequest}

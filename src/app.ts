@@ -1,12 +1,13 @@
 import express, { Application, json } from 'express'
-import { startDatabase }from './database'
-import { createUser, getMovies } from './logics/movies.logics'
+import 'express-async-errors'
+import { movieRoutes, userRoutes } from './routes/routes.routes'
+import { handleErrors } from './errors'
 const app: Application = express()
-app.use(json())
-app.get('/movies', getMovies)
-app.post('/user', createUser)
 
-app.listen(3000, async ()=>{
-    console.log("Servidor iniciado!")
-    await startDatabase()
-})
+app.use(json())
+app.use(handleErrors)
+
+app.use('/movies', movieRoutes)
+app.use('/users', userRoutes)
+
+export default app
