@@ -5,14 +5,13 @@ import { QueryResult } from "pg"
 import { client } from "../database"
 export const createUser = async (userBody: userSchemaReq): Promise<iUserRes> =>{
     userBody.password = await bcrypt.hash(userBody.password, 10)
-    userBody.confirmPassword = await bcrypt.hash(userBody.confirmPassword, 10)
-
+ 
     const queryString = format(`
         INSERT INTO 
             users (%I)
         VALUES 
             (%L)
-        RETURNING username, email; 
+        RETURNING id, username, email; 
     `,
     Object.keys(userBody),
     Object.values(userBody)
