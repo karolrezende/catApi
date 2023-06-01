@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { iUserRes, loginShemaReq, userSchemaReq } from "../interfaces/user.interfaces";
 import { createUser } from "../services/createUser.services";
 import { loginUser } from "../services/loginUser.services";
+import { getUser } from "../services/getUser.services";
 
 export const createUserController = async(req: Request, res: Response): Promise<Response> =>{
     const userBody: userSchemaReq = req.body
@@ -14,4 +15,11 @@ export const loginUserController = async (req: Request, res:Response):Promise<Re
     const loggedUser = await loginUser(userBody)
     
     return res.status(200).json(loggedUser)
+}
+
+export const getUserController = async (req: Request, res: Response): Promise<Response>=>{
+    const token : string = req.body.token
+    const userData: iUserRes = getUser(token)
+
+    
 }
