@@ -18,8 +18,7 @@ export const loginUserController = async (req: Request, res:Response):Promise<Re
 }
 
 export const getUserController = async (req: Request, res: Response): Promise<Response>=>{
-    const token : string = req.body.token
-    const userData: iUserRes = getUser(token)
-
-    
+    const tokenEmail: string = res.locals.email
+    const userData: iUserRes = await getUser(tokenEmail)
+    return res.status(200).json(userData)
 }
